@@ -241,11 +241,7 @@ class Breaker
      */
     protected function loadCircuit($name)
     {
-        if ($this->store->contains($name)) {
-            $circuit = $this->store->fetch($name);
-        } else {
-            $circuit = new Circuit($name);
-        }
+        $circuit = $this->store->fetch($name) ?: new Circuit($name);
 
         $this->writeToStore($circuit);
 
